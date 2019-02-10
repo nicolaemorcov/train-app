@@ -29,7 +29,8 @@ public final class TrainServiceImpl implements TrainService {
                 trainDto.getDestination(),
                 trainDto.getScheduledTimeDeparture(),
                 passengerService
-                    .convertToPassengerModels(trainDto.getPassengerDtos())
+                    .convertToPassengerModels(trainDto.getPassengerDtos()),
+                trainDto.getStationList()
         );
         return trainModel;
     }
@@ -41,7 +42,8 @@ public final class TrainServiceImpl implements TrainService {
                 trainModel.getDestination(),
                 trainModel.getScheduledTimeDeparture(),
                 passengerService
-                        .convertToPassengerDtos(trainModel.getPassengerModels())
+                        .convertToPassengerDtos(trainModel.getPassengerModels()),
+                trainModel.getStationList()
         );
         return trainDto;
     }

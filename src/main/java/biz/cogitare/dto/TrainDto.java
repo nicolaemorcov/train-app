@@ -16,15 +16,17 @@ public final class TrainDto implements Serializable {
     private final String destination;
     private final LocalDateTime scheduledTimeDeparture;
     private final List<PassengerDto> passengerDtos;
+    private final List<String> stationList;
 //    private final LocalDateTime createTime;
 
 
-    public TrainDto(String id, String origin, String destination, LocalDateTime scheduledTimeDeparture, List<PassengerDto> passengerDtos) {
-        this.id = id;
-        this.origin = origin;
-        this.destination = destination;
+    public TrainDto(String id, String origin, String destination, LocalDateTime scheduledTimeDeparture, List<PassengerDto> passengerDtos, List<String> stationList) {
+        this.id = ValidationUtils.isNotNullAndNotEmpty(id, "Train ID must not be empty");
+        this.origin = ValidationUtils.isNotNullAndNotEmpty(origin, "Origin  must not be empty");
+        this.destination = ValidationUtils.isNotNullAndNotEmpty(destination, "Destination must not be empty");
         this.scheduledTimeDeparture = scheduledTimeDeparture;
-        this.passengerDtos = passengerDtos;
+        this.passengerDtos = ValidationUtils.isNotNullAndNotEmpty(passengerDtos, "Train must have at least one passenger");
+        this.stationList = ValidationUtils.isNotNullAndNotEmpty(stationList, "Add all stations for the train");
     }
 
     public String getId() {
@@ -47,6 +49,10 @@ public final class TrainDto implements Serializable {
         return passengerDtos;
     }
 
+    public List<String> getStationList() {
+        return stationList;
+    }
+
     @Override
     public String toString() {
         return "TrainDto{" +
@@ -55,6 +61,7 @@ public final class TrainDto implements Serializable {
                 ", destination='" + destination + '\'' +
                 ", scheduledTimeDeparture=" + scheduledTimeDeparture +
                 ", passengerDtos=" + passengerDtos +
+                ", stationList=" + stationList +
                 '}';
     }
 }

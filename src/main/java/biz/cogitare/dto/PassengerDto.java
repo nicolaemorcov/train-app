@@ -41,6 +41,7 @@ public final class PassengerDto implements Serializable {
         return addressDto;
     }
 
+
     @Override
     public String toString() {
         return "PassengerModel{" +

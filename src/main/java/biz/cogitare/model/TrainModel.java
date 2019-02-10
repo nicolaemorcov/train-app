@@ -16,15 +16,17 @@ public final class TrainModel {
     private final String destination;
     private final LocalDateTime scheduledTimeDeparture;
     private final List<PassengerModel> passengerModels;
+    private final List<String> stationList;
 //    private final LocalDateTime createTime;
 
 
-    public TrainModel(String id, String origin, String destination, LocalDateTime scheduledTimeDeparture, List<PassengerModel> passengerModels) {
-        this.id = id;
-        this.origin = origin;
-        this.destination = destination;
+    public TrainModel(String id, String origin, String destination, LocalDateTime scheduledTimeDeparture, List<PassengerModel> passengerModels, List<String> stationList) {
+        this.id = ValidationUtils.isNotNullAndNotEmpty(id, "Train ID must not be empty");
+        this.origin = ValidationUtils.isNotNullAndNotEmpty(origin, "Origin  must not be empty");
+        this.destination = ValidationUtils.isNotNullAndNotEmpty(destination, "Destination must not be empty");
         this.scheduledTimeDeparture = scheduledTimeDeparture;
         this.passengerModels = ValidationUtils.isNotNullAndNotEmpty(passengerModels, "Train must have at least one passenger");
+        this.stationList = ValidationUtils.isNotNullAndNotEmpty(stationList, "Add all stations for the train");
     }
 
     public String getId() {
@@ -47,6 +49,9 @@ public final class TrainModel {
         return passengerModels;
     }
 
+    public List<String> getStationList() {
+        return stationList;
+    }
 
     @Override
     public String toString() {
@@ -56,6 +61,7 @@ public final class TrainModel {
                 ", destination='" + destination + '\'' +
                 ", scheduledTimeDeparture=" + scheduledTimeDeparture +
                 ", passengerModels=" + passengerModels +
+                ", stationList=" + stationList +
                 '}';
     }
 }

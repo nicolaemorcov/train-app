@@ -44,7 +44,6 @@ public final class PassengerModel {
         return addressModel;
     }
 
-
     @Override
     public String toString() {
         return "PassengerModel{" +
