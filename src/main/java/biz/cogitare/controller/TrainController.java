@@ -41,6 +41,12 @@ public final class TrainController {
     }
 
 
+    @RequestMapping(value = "/updatetrain", method = RequestMethod.POST)
+    public void updateTrain(@RequestBody TrainDto train){
+        trainService.createTrain(train);
+    }
+
+
 
 
 

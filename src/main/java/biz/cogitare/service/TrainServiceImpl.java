@@ -57,6 +57,7 @@ public final class TrainServiceImpl implements TrainService {
         query.addCriteria(Criteria.where("_id").is(id));
         TrainModel trainModel = trainRepository.getTrainById(id);
         TrainDto trainDto = converToTrainDto(trainModel);
+        trainRepository.
         return trainDto;
     }
 
